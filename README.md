@@ -1,98 +1,193 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="120" alt="Nest Logo" /></a>
-</p>
+# 📝 NestJS To-Do App
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+A simple task management API built with **NestJS** and **MongoDB**, designed with clean architecture and easy extensibility in mind. Includes enhanced features like marking todos complete, handling deadlines, and generating reports by day/month/year.
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg" alt="Donate us"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow" alt="Follow us on Twitter"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+---
 
-## Description
+## 📦 Tech Stack
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+- **NestJS** - Node.js framework
+- **MongoDB** - NoSQL database
+- **Mongoose** - ODM for MongoDB
+- **Docker (optional)** - For containerization
+- **ELK Stack (optional)** - For structured logging and visualization
 
-## Project setup
+---
+
+## 🚀 Getting Started
+
+### 1. Clone the repository
 
 ```bash
-$ npm install
+git clone https://github.com/your-username/nestjs-todo-app.git
+cd nestjs-todo-app
 ```
 
-## Compile and run the project
+### 2. Install dependencies
 
 ```bash
-# development
-$ npm run start
-
-# watch mode
-$ npm run start:dev
-
-# production mode
-$ npm run start:prod
+npm install
 ```
 
-## Run tests
+### 3. Configure environment variables
+
+Create a `.env` file:
+
+```env
+MONGODB_URI=mongodb://localhost:27017/todo-db
+PORT=3000
+```
+
+Or use your cloud MongoDB:
+
+```env
+MONGODB_URI=mongodb+srv://username:password@cluster.mongodb.net/dbname
+PORT=3000
+```
+
+### 4. Run the application
 
 ```bash
-# unit tests
-$ npm run test
-
-# e2e tests
-$ npm run test:e2e
-
-# test coverage
-$ npm run test:cov
+npm run start
 ```
 
-## Deployment
+Access at: `http://localhost:3000`
 
-When you're ready to deploy your NestJS application to production, there are some key steps you can take to ensure it runs as efficiently as possible. Check out the [deployment documentation](https://docs.nestjs.com/deployment) for more information.
+---
 
-If you are looking for a cloud-based platform to deploy your NestJS application, check out [Mau](https://mau.nestjs.com), our official platform for deploying NestJS applications on AWS. Mau makes deployment straightforward and fast, requiring just a few simple steps:
+## 📡 API Documentation
 
-```bash
-$ npm install -g mau
-$ mau deploy
+### Base URL
+
+```
+http://localhost:3000
 ```
 
-With Mau, you can deploy your application in just a few clicks, allowing you to focus on building features rather than managing infrastructure.
+---
 
-## Resources
+### 📋 Health Check
 
-Check out a few resources that may come in handy when working with NestJS:
+- `GET /`  
+Returns a simple message to confirm the server is running.
 
-- Visit the [NestJS Documentation](https://docs.nestjs.com) to learn more about the framework.
-- For questions and support, please visit our [Discord channel](https://discord.gg/G7Qnnhy).
-- To dive deeper and get more hands-on experience, check out our official video [courses](https://courses.nestjs.com/).
-- Deploy your application to AWS with the help of [NestJS Mau](https://mau.nestjs.com) in just a few clicks.
-- Visualize your application graph and interact with the NestJS application in real-time using [NestJS Devtools](https://devtools.nestjs.com).
-- Need help with your project (part-time to full-time)? Check out our official [enterprise support](https://enterprise.nestjs.com).
-- To stay in the loop and get updates, follow us on [X](https://x.com/nestframework) and [LinkedIn](https://linkedin.com/company/nestjs).
-- Looking for a job, or have a job to offer? Check out our official [Jobs board](https://jobs.nestjs.com).
+---
 
-## Support
+### 📘 To-Do Endpoints
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+#### ✅ Create To-Do
+- `POST /todos`
+- Body:
 
-## Stay in touch
+```json
+{
+  "title": "Build backend",
+  "description": "Using NestJS",
+  "deadline": "2025-04-01T00:00:00Z"
+}
+```
 
-- Author - [Kamil Myśliwiec](https://twitter.com/kammysliwiec)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+#### 📥 Get All To-Dos
+- `GET /todos`
 
-## License
+#### 📄 Get To-Do by ID
+- `GET /todos/:id`
 
-Nest is [MIT licensed](https://github.com/nestjs/nest/blob/master/LICENSE).
+#### 📝 Update To-Do
+- `PUT /todos/:id`
+- Body:
+
+```json
+{
+  "title": "Updated title",
+  "completed": false
+}
+```
+
+#### ❌ Delete To-Do
+- `DELETE /todos/:id`
+
+---
+
+### ✅ Mark as Complete
+
+#### Single Task
+- `PATCH /todos/:id/complete`
+
+#### Multiple Tasks
+- `POST /todos/complete`
+- Body:
+
+```json
+{
+  "ids": ["id1", "id2", "id3"]
+}
+```
+
+---
+
+### 📊 Reporting
+
+Get a report on task status within a given time period:
+
+- `GET /todos/report?period=day`
+- `GET /todos/report?period=month`
+- `GET /todos/report?period=year`
+
+Returns:
+
+```json
+{
+  "period": "month",
+  "startDate": "2025-03-01T00:00:00.000Z",
+  "completed": 5,
+  "notCompleted": 2,
+  "late": 1
+}
+```
+
+---
+
+## 📁 Project Structure
+
+```
+src/
+├── todo/
+│   ├── todo.controller.ts
+│   ├── todo.service.ts
+│   ├── todo.module.ts
+│   └── todo.schema.ts
+├── app.controller.ts
+├── app.module.ts
+└── main.ts
+```
+
+---
+
+## 🐳 Docker (Optional)
+
+Coming soon in the next section.
+
+---
+
+## 📈 Logging & ELK (Optional)
+
+Structured JSON logging to be implemented with Logstash/Filebeat + Kibana.
+
+---
+
+## ✅ To-Do Features Recap
+
+- [x] CRUD for tasks
+- [x] Complete task individually or in batch
+- [x] Optional `deadline` for each task
+- [x] Report by day, month, year (completed, not completed, late)
+- [ ] JSON Logging
+- [ ] Docker + ELK Stack
+
+---
+
+## 🧑‍💻 Author
+
+Built by hphun9 — DevOps | SRE | Backend Enthusiast.
+
+---
